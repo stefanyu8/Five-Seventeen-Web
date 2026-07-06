@@ -411,7 +411,7 @@ if (contactForm) {
         headers: { 'Accept': 'application/json' }
       });
       if (res.ok) {
-        contactForm.innerHTML = '<div style="min-height:340px;display:flex;flex-direction:column;justify-content:center;"><p style="font-family:\'Bodoni Moda\',Georgia,serif;font-size:clamp(32px,4vw,48px);font-weight:700;line-height:1;letter-spacing:-.01em;color:#f5efe3;margin-bottom:16px;">Thank you.</p><p style="font-family:\'Inter\',sans-serif;font-size:12px;font-weight:400;letter-spacing:.02em;line-height:1.7;color:rgba(245,239,227,.6);">We received your inquiry. We will be in touch shortly.</p></div>';
+        contactForm.innerHTML = '<div style="min-height:340px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;"><p style="font-family:\'Bodoni Moda\',Georgia,serif;font-size:clamp(32px,4vw,48px);font-weight:700;line-height:1;letter-spacing:-.01em;color:#f5efe3;margin-bottom:16px;">Thank you.</p><p style="font-family:\'Inter\',sans-serif;font-size:12px;font-weight:400;letter-spacing:.02em;line-height:1.7;color:rgba(245,239,227,.6);">We received your inquiry. We will be in touch shortly.</p></div>';
       } else {
         btn.textContent = 'Something went wrong — try again';
         btn.disabled = false;
@@ -425,3 +425,4 @@ if (contactForm) {
 </script>
 </body>
 </html>
+
