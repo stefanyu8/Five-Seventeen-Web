@@ -18,7 +18,187 @@
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <!-- Styles -->
-<link rel="stylesheet" href="css/style.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#f5efe3;
+  --cherry:#4a0e1a;
+  --brown:#190d09;
+  --offwhite:#ece6d6;
+  --fd:'Bodoni Moda',Georgia,serif;
+  --fb:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--cream);color:var(--brown);overflow-x:hidden}
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-thumb{background:var(--cherry)}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:24px 48px;
+  transition:background .4s ease,border-color .4s ease;
+  color:var(--cream);
+}
+nav.scrolled{background:var(--cream);color:var(--brown);border-bottom:.5px solid rgba(25,13,9,.12)}
+.nav-wm{font-family:var(--fd);font-size:12px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:inherit}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:inherit;transition:opacity .2s}
+.nav-links a:hover{opacity:.5}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;color:inherit}
+.nav-toggle span{display:block;width:22px;height:.5px;background:currentColor;transition:all .3s ease}
+.nav-toggle span+span{margin-top:6px}
+
+/* HERO */
+.hero{
+  height:100vh;min-height:600px;background:var(--cherry);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 48px 72px;position:relative;overflow:hidden;
+}
+.hero-wm{
+  position:absolute;right:-80px;top:50%;transform:translateY(-50%);
+  font-family:var(--fd);font-size:clamp(280px,40vw,580px);font-weight:900;
+  color:rgba(245,239,227,.04);line-height:1;pointer-events:none;
+  user-select:none;letter-spacing:-.04em;
+}
+.hero-eyebrow{
+  font-size:9px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(245,239,227,.45);margin-bottom:28px;
+  opacity:0;transform:translateY(10px);animation:fu .7s ease forwards .15s;
+}
+.hero-h1{
+  font-family:var(--fd);font-size:clamp(54px,9.5vw,138px);
+  font-weight:700;line-height:.9;letter-spacing:-.025em;
+  text-transform:uppercase;color:var(--cream);margin-bottom:44px;
+}
+.hero-h1 .ln{display:block;overflow:hidden}
+.hero-h1 .ln span{display:block;opacity:0;transform:translateY(105%);animation:su .9s cubic-bezier(.16,1,.3,1) forwards}
+.hero-h1 .ln:nth-child(1) span{animation-delay:.25s}
+.hero-h1 .ln:nth-child(2) span{animation-delay:.42s}
+.hero-h1 .ln:nth-child(3) span{animation-delay:.58s}
+.hero-foot{
+  display:flex;align-items:center;gap:32px;
+  opacity:0;animation:fu .7s ease forwards .9s;
+}
+.hero-meta{font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,239,227,.5)}
+.hero-scroll{display:flex;align-items:center;gap:10px;margin-left:auto;font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,239,227,.35)}
+.scroll-bar{width:28px;height:.5px;background:rgba(245,239,227,.35)}
+@keyframes su{to{opacity:1;transform:translateY(0)}}
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+
+/* FADE IN */
+.fade{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+.fade.vis{opacity:1;transform:translateY(0)}
+
+/* STUDIO */
+.studio{background:var(--cream);padding:120px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.sec-lbl{font-size:9px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--cherry);margin-bottom:28px;display:block}
+.studio-hl{font-family:var(--fd);font-size:clamp(28px,3.2vw,46px);font-weight:700;line-height:1.06;letter-spacing:-.01em;text-transform:uppercase;color:var(--brown)}
+.studio-r{padding-top:52px}
+.body{font-size:14px;font-weight:400;line-height:1.8;color:var(--brown);opacity:.82;margin-bottom:20px}
+
+/* WORK */
+.work{background:var(--offwhite);padding:100px 48px}
+.section-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px}
+.sec-hl{font-family:var(--fd);font-size:clamp(40px,5.5vw,78px);font-weight:700;text-transform:uppercase;letter-spacing:-.025em;line-height:.9}
+.sec-note{font-size:10px;font-weight:400;letter-spacing:.1em;color:rgba(25,13,9,.4);text-align:right;line-height:1.7;max-width:180px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:3px}
+.wcard{position:relative;aspect-ratio:4/3;overflow:hidden;cursor:pointer}
+.wcard-bg{width:100%;height:100%;transition:transform .65s cubic-bezier(.16,1,.3,1)}
+.wcard:hover .wcard-bg{transform:scale(1.05)}
+.c1 .wcard-bg{background:var(--cherry)}
+.c2 .wcard-bg{background:var(--brown)}
+.c3 .wcard-bg{background:#2d0a10}
+.c4 .wcard-bg{background:#150406}
+.wcard-info{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;background:linear-gradient(transparent,rgba(0,0,0,.55));transform:translateY(6px);transition:transform .4s ease}
+.wcard:hover .wcard-info{transform:translateY(0)}
+.wcard-t{font-family:var(--fd);font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;color:var(--cream);display:block;margin-bottom:4px}
+.wcard-c{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,239,227,.55)}
+
+/* SERVICES */
+.services{background:var(--brown);padding:112px 48px}
+.svc-hdr{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.5px solid rgba(245,239,227,.1);padding-bottom:40px;margin-bottom:72px}
+.svc-note{font-size:11px;font-weight:400;letter-spacing:.1em;color:rgba(245,239,227,.3);max-width:200px;text-align:right;line-height:1.7}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:60px}
+.scard{border:.5px solid rgba(245,239,227,.1);padding:48px 40px;transition:border-color .3s ease}
+.scard:hover{border-color:rgba(245,239,227,.28)}
+.scard-n{font-family:var(--fd);font-size:26px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;color:var(--cream);display:block;margin-bottom:24px}
+.scard-d{font-size:13px;font-weight:400;line-height:1.8;color:rgba(245,239,227,.48);margin-bottom:32px}
+.scard-ul{list-style:none}
+.scard-ul li{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,239,227,.32);padding:10px 0;border-top:.5px solid rgba(245,239,227,.07)}
+
+/* ADD-ONS */
+.addons{margin-bottom:72px;padding-top:48px;border-top:.5px solid rgba(245,239,227,.1)}
+.addons-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:28px}
+.addon{border:.5px solid rgba(245,239,227,.07);padding:24px 28px;transition:border-color .3s}
+.addon:hover{border-color:rgba(245,239,227,.2)}
+.addon-n{font-family:var(--fd);font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;color:var(--cream);display:block;margin-bottom:8px}
+.addon-d{font-size:10px;font-weight:400;color:rgba(245,239,227,.3);line-height:1.6}
+
+.cta-w{text-align:center}
+.btn{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);border:.5px solid rgba(245,239,227,.45);padding:18px 52px;text-decoration:none;transition:background .3s ease,color .3s ease,border-color .3s ease}
+.btn:hover{background:var(--cream);color:var(--brown);border-color:var(--cream)}
+
+/* CONTACT — Cherry World */
+.contact{background:var(--cherry);padding:120px 48px;display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:start}
+.contact-hl{font-family:var(--fd);font-size:clamp(52px,7vw,104px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;color:var(--cream);line-height:.94;margin-bottom:28px}
+.contact-body{font-size:13px;font-weight:400;line-height:1.8;color:var(--cream);opacity:.7;margin-bottom:40px}
+.contact-social{display:flex;flex-direction:column;gap:10px}
+.contact-social a{font-size:10px;font-weight:500;letter-spacing:.1em;color:rgba(245,239,227,.55);text-decoration:none;transition:color .2s}
+.contact-social a:hover{color:var(--cream)}
+
+/* FORM — on Cherry World */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
+.form-field{display:flex;flex-direction:column;margin-bottom:0}
+.form-field.full{margin-bottom:28px}
+.form-field label{font-size:8px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,239,227,.5);margin-bottom:10px}
+.form-field input,
+.form-field select,
+.form-field textarea{
+  font-family:var(--fb);font-size:13px;font-weight:400;color:var(--cream);
+  background:transparent;border:none;border-bottom:.5px solid rgba(245,239,227,.28);
+  padding:10px 0;outline:none;transition:border-color .25s;-webkit-appearance:none;
+}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-bottom-color:var(--cream)}
+.form-field textarea{resize:none;line-height:1.6}
+.form-field select{cursor:pointer;color:rgba(245,239,227,.6)}
+.form-field select option{color:var(--brown)}
+.form-submit{
+  margin-top:40px;font-family:var(--fb);font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--cherry);
+  background:var(--cream);border:none;padding:18px 48px;
+  cursor:pointer;transition:background .3s ease,opacity .3s ease;display:block;
+}
+.form-submit:hover{background:var(--offwhite)}
+.form-submit:disabled{opacity:.6;cursor:default}
+
+/* FOOTER */
+footer{background:var(--cherry);padding:28px 48px;display:flex;justify-content:space-between;align-items:center}
+.ft-wm{font-family:var(--fd);font-size:10px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,239,227,.3);text-decoration:none}
+.ft-copy{font-size:9px;letter-spacing:.12em;color:rgba(245,239,227,.18);text-transform:uppercase}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav{padding:20px 24px}
+  .nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--brown);flex-direction:column;justify-content:center;align-items:center;gap:40px;z-index:90}
+  .nav-links.open{display:flex}
+  .nav-links a{font-size:14px;color:var(--cream)}
+  .nav-toggle{display:flex;flex-direction:column}
+
+  .hero{padding:0 24px 52px}
+  .studio{grid-template-columns:1fr;padding:80px 24px;gap:40px}
+  .studio-r{padding-top:0}
+  .work{padding:72px 24px}
+  .grid2{grid-template-columns:1fr}
+  .services{padding:80px 24px}
+  .svc-grid{grid-template-columns:1fr}
+  .addons-grid{grid-template-columns:1fr 1fr}
+  .contact{grid-template-columns:1fr;padding:80px 24px;gap:52px}
+  footer{padding:24px;flex-direction:column;gap:12px;text-align:center}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
@@ -184,6 +364,63 @@
   <span class="ft-copy">&copy; 2026 &mdash; All rights reserved</span>
 </footer>
 
-<script src="js/main.js"></script>
+<script>
+// Nav scroll state
+const nav = document.getElementById('nav');
+new IntersectionObserver(e => {
+  e[0].isIntersecting
+    ? nav.classList.remove('scrolled')
+    : nav.classList.add('scrolled');
+}, { threshold: 0.05 }).observe(document.querySelector('.hero'));
+
+// Fade-in on scroll
+const obs = new IntersectionObserver(e => {
+  e.forEach(el => { if (el.isIntersecting) el.target.classList.add('vis'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.fade').forEach(s => obs.observe(s));
+
+// Mobile nav toggle
+const toggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+if (toggle && navLinks) {
+  toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+// Contact form → Formspree (submits without leaving the page)
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('.form-submit');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        contactForm.innerHTML = '<p style="font-family:\'Bodoni Moda\',Georgia,serif;font-size:22px;line-height:1.4;color:#f5efe3;">Thank you. We will be in touch shortly.</p>';
+      } else {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      btn.textContent = 'Something went wrong — try again';
+      btn.disabled = false;
+    }
+  });
+}
+</script>
 </body>
 </html>
