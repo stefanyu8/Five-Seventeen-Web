@@ -27,3 +27,31 @@ if (toggle && navLinks) {
     });
   });
 }
+
+// Contact form → Formspree (submits without leaving the page)
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('.form-submit');
+    const original = btn.textContent;
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        contactForm.innerHTML = '<p style="font-family:\'Bodoni Moda\',Georgia,serif;font-size:22px;line-height:1.4;color:#f5efe3;">Thank you. We will be in touch shortly.</p>';
+      } else {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      btn.textContent = 'Something went wrong — try again';
+      btn.disabled = false;
+    }
+  });
+}

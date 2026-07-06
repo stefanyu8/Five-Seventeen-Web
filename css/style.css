@@ -119,36 +119,38 @@ nav.scrolled{background:var(--cream);color:var(--brown);border-bottom:.5px solid
 .btn{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);border:.5px solid rgba(245,239,227,.45);padding:18px 52px;text-decoration:none;transition:background .3s ease,color .3s ease,border-color .3s ease}
 .btn:hover{background:var(--cream);color:var(--brown);border-color:var(--cream)}
 
-/* CONTACT */
-.contact{background:var(--cream);padding:120px 48px;display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:start}
-.contact-hl{font-family:var(--fd);font-size:clamp(52px,7vw,104px);font-weight:700;text-transform:uppercase;letter-spacing:-.03em;color:var(--brown);line-height:.88;margin-bottom:28px}
-.contact-body{font-size:13px;font-weight:400;line-height:1.8;color:var(--brown);opacity:.62;margin-bottom:40px}
+/* CONTACT — Cherry World */
+.contact{background:var(--cherry);padding:120px 48px;display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:start}
+.contact-hl{font-family:var(--fd);font-size:clamp(52px,7vw,104px);font-weight:700;text-transform:uppercase;letter-spacing:-.03em;color:var(--cream);line-height:.88;margin-bottom:28px}
+.contact-body{font-size:13px;font-weight:400;line-height:1.8;color:var(--cream);opacity:.7;margin-bottom:40px}
 .contact-social{display:flex;flex-direction:column;gap:10px}
-.contact-social a{font-size:10px;font-weight:500;letter-spacing:.1em;color:rgba(25,13,9,.38);text-decoration:none;transition:color .2s}
-.contact-social a:hover{color:var(--cherry)}
+.contact-social a{font-size:10px;font-weight:500;letter-spacing:.1em;color:rgba(245,239,227,.55);text-decoration:none;transition:color .2s}
+.contact-social a:hover{color:var(--cream)}
 
-/* FORM */
+/* FORM — on Cherry World */
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
 .form-field{display:flex;flex-direction:column;margin-bottom:0}
 .form-field.full{margin-bottom:28px}
-.form-field label{font-size:8px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(25,13,9,.38);margin-bottom:10px}
+.form-field label{font-size:8px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,239,227,.5);margin-bottom:10px}
 .form-field input,
 .form-field select,
 .form-field textarea{
-  font-family:var(--fb);font-size:13px;font-weight:400;color:var(--brown);
-  background:transparent;border:none;border-bottom:.5px solid rgba(25,13,9,.15);
+  font-family:var(--fb);font-size:13px;font-weight:400;color:var(--cream);
+  background:transparent;border:none;border-bottom:.5px solid rgba(245,239,227,.28);
   padding:10px 0;outline:none;transition:border-color .25s;-webkit-appearance:none;
 }
-.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-bottom-color:var(--cherry)}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-bottom-color:var(--cream)}
 .form-field textarea{resize:none;line-height:1.6}
-.form-field select{cursor:pointer;color:rgba(25,13,9,.45)}
+.form-field select{cursor:pointer;color:rgba(245,239,227,.6)}
+.form-field select option{color:var(--brown)}
 .form-submit{
   margin-top:40px;font-family:var(--fb);font-size:10px;font-weight:600;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--cream);
-  background:var(--brown);border:none;padding:18px 48px;
-  cursor:pointer;transition:background .3s ease;display:block;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--cherry);
+  background:var(--cream);border:none;padding:18px 48px;
+  cursor:pointer;transition:background .3s ease,opacity .3s ease;display:block;
 }
-.form-submit:hover{background:var(--cherry)}
+.form-submit:hover{background:var(--offwhite)}
+.form-submit:disabled{opacity:.6;cursor:default}
 
 /* FOOTER */
 footer{background:var(--brown);padding:28px 48px;display:flex;justify-content:space-between;align-items:center}
