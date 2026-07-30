@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drift &middot; Five-Seventeen Studio</title>
+<meta name="description" content="Brand identity for Drift, a Mexican-style lager built for the days that do not need to be rushed. Strategy, identity, packaging, and web by Five-Seventeen.">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Drift &middot; Five-Seventeen Studio">
+<meta property="og:description" content="We do not make beer to impress anyone. We make beer to share.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://five-seventeen.com/drift">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --off:#F7F6F2;
+  --cherry:#4a0e1a;
+  --cream:#f5efe3;
+  --ink:#0A0A0A;
+  --ink-60:rgba(10,10,10,.62);
+  --rule:rgba(10,10,10,.12);
+  --fd:'Bodoni Moda',Georgia,serif;
+  --fb:'Inter',sans-serif;
+  --pad:clamp(24px,5.5vw,72px);
+  --navgap:clamp(30px,4.2vw,64px);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --opsz:14;
+
+  /* paleta del cliente. Solo vive en esta pagina */
+  --d-rust:#AF4D2A;
+  --d-cream:#F9F0E4;
+  --d-yellow:#F9CA55;
+  --d-teal:#7BAAA7;
+  --d-brown:#301F13;
+}
+
+html{scroll-behavior:auto}
+html.ready{scroll-behavior:smooth}
+body{
+  font-family:var(--fb);background:var(--off);color:var(--ink);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+::selection{background:var(--cherry);color:var(--cream)}
+::-webkit-scrollbar{width:2px}
+::-webkit-scrollbar-thumb{background:var(--cherry)}
+
+/* ============ NAV ============ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;gap:var(--navgap);
+  padding:26px var(--pad);
+  background:rgba(247,246,242,0);
+  transition:background .45s var(--ease),border-color .45s var(--ease),padding .45s var(--ease);
+  border-bottom:.5px solid transparent;
+}
+nav.stuck{background:rgba(247,246,242,.94);backdrop-filter:blur(12px);border-bottom-color:var(--rule);padding:18px var(--pad)}
+.brand{display:inline-flex;align-items:center;text-decoration:none;line-height:0;margin-right:auto}
+.brand img{height:34px;width:auto;transition:height .45s var(--ease)}
+nav.stuck .brand img{height:28px}
+.nav-links{display:flex;gap:var(--navgap);list-style:none}
+.nav-links a{font-size:14px;font-weight:400;letter-spacing:.075em;text-decoration:none;position:relative;padding-bottom:4px}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:.5px;background:currentColor;transition:width .4s var(--ease)}
+.nav-links a:hover::after,.nav-links a[aria-current="page"]::after{width:100%}
+.btn-call{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--cherry);color:var(--cream);text-decoration:none;
+  font-size:11px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
+  padding:15px 24px;border-radius:5px;transition:gap .4s var(--ease);
+}
+.btn-call:hover{gap:18px}
+.btn-call .ar{font-size:13px;line-height:1}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px}
+.nav-toggle span{display:block;width:22px;height:.5px;background:var(--ink);transition:transform .35s var(--ease)}
+.nav-toggle span+span{margin-top:6px}
+
+/* ============ Atomos ============ */
+.rise{overflow:hidden;display:block}
+.rise>span{display:block;transform:translateY(105%);transition:transform 1s var(--ease)}
+.rise.vis>span{transform:translateY(0)}
+.fade{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.fade.vis{opacity:1;transform:translateY(0)}
+.lede{font-size:18px;font-weight:300;line-height:1.72;color:var(--ink-60);letter-spacing:.003em}
+.lede+.lede{margin-top:22px}
+.wrap{max-width:1500px;margin:0 auto}
+
+/* ============ HERO de video, contenido ============
+   El clip es cuadrado. En vez de recortarlo a una banda, se muestra entero
+   como una placa centrada. Se lee como decision, no como recorte. */
+.hero{
+  padding:calc(var(--pad) + 84px) var(--pad) clamp(20px,4vh,44px);
+}
+.hero-frame{
+  max-width:min(620px, 46vw);margin:0 auto;
+  aspect-ratio:1/1;overflow:hidden;background:var(--d-rust);
+  position:relative;
+}
+.hero-frame video{width:100%;height:100%;object-fit:cover;display:block}
+/* apertura: la placa se descubre de abajo hacia arriba */
+.hero-frame::after{
+  content:"";position:absolute;inset:0;background:var(--off);
+  transform:scaleY(1);transform-origin:top;
+  animation:plateOpen 1.1s var(--ease) forwards .25s;
+}
+@keyframes plateOpen{to{transform:scaleY(0)}}
+
+.hero-cap{
+  text-align:center;font-size:11px;font-weight:500;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--ink-60);
+  padding:0 var(--pad) clamp(56px,9vh,110px);
+  opacity:0;animation:capIn .8s var(--ease) forwards 1.2s;
+}
+@keyframes capIn{to{opacity:1}}
+
+@media (max-width:860px){
+  .hero-frame{max-width:100%}
+}
+
+/* ============ INTRO ============ */
+.lead{padding:0 var(--pad) clamp(70px,11vh,140px)}
+.lead .eyebrow{
+  font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
+  margin-bottom:clamp(26px,4vh,40px);
+}
+.tags{display:flex;flex-wrap:wrap;gap:clamp(26px,4.2vw,58px);margin-bottom:clamp(32px,4.6vh,50px)}
+.tags span{font-size:13.5px;font-weight:400;letter-spacing:.045em;color:var(--ink-60)}
+.lead .lede{max-width:1030px}
+
+/* ============ Bloques del case study ============ */
+.board{display:block;width:100%}
+.board img,.board video{width:100%;height:auto}
+.board.tint{background:var(--d-teal)}
+
+.cap{
+  padding:20px var(--pad) clamp(56px,8vh,96px);
+  font-size:13.5px;font-weight:300;letter-spacing:.02em;color:var(--ink-60);
+  max-width:760px;
+}
+.cap strong{font-weight:500;color:var(--ink);display:block;margin-bottom:5px;letter-spacing:.01em}
+
+/* paleta reconstruida en HTML: nitida y legible en cualquier pantalla */
+.swatches{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:clamp(10px,1.6vw,22px);padding:0 var(--pad);
+}
+.sw{display:block}
+.sw i{display:block;aspect-ratio:1/1;border-radius:2px}
+.sw b{display:block;font-size:11px;font-weight:500;letter-spacing:.09em;margin-top:11px}
+.sw span{display:block;font-size:10.5px;font-weight:300;color:var(--ink-60);letter-spacing:.03em;margin-top:2px}
+
+/* ============ CIERRE ============ */
+.link-cta{
+  display:inline-flex;align-items:center;gap:11px;text-decoration:none;color:var(--cherry);
+  font-size:12.5px;font-weight:500;letter-spacing:.17em;text-transform:uppercase;
+  transition:gap .4s var(--ease);
+}
+.link-cta:hover{gap:17px}
+.link-cta .ar{font-size:14px;line-height:1}
+
+.close{background:var(--cherry);color:var(--cream);padding:clamp(80px,13vh,160px) var(--pad) 0;text-align:center}
+.close h2{font-family:var(--fb);font-weight:500;font-size:clamp(25px,3.1vw,42px);letter-spacing:-.016em;margin-bottom:18px}
+.close p{font-size:15.5px;font-weight:300;line-height:1.75;color:rgba(245,239,227,.72);max-width:50ch;margin:0 auto clamp(44px,7vh,72px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--cream);color:var(--cherry);text-decoration:none;
+  font-size:11px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
+  padding:15px 26px;border-radius:5px;transition:gap .4s var(--ease);
+}
+.btn-ghost:hover{gap:18px}
+.wm{margin:clamp(60px,10vh,120px) calc(var(--pad) * -1) 0;display:block;overflow:hidden}
+.wm svg{width:100%;height:auto;display:block;opacity:0;transform:translateY(6%);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.wm.vis svg{opacity:1;transform:translateY(0)}
+.colophon{
+  background:var(--cherry);color:rgba(245,239,227,.55);padding:26px var(--pad) 30px;
+  display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  font-size:9px;letter-spacing:.13em;text-transform:uppercase;
+}
+.colophon a{text-decoration:none;transition:color .25s}
+.colophon a:hover{color:var(--cream)}
+.colophon .r{display:flex;gap:22px;flex-wrap:wrap}
+
+/* ============ MOVIL ============ */
+@media (max-width:860px){
+  nav{gap:0}
+  .nav-links{position:fixed;inset:0;background:var(--off);flex-direction:column;justify-content:center;align-items:center;gap:34px;z-index:90;display:none}
+  .nav-links.open{display:flex}
+  .nav-links a{font-size:18px;letter-spacing:.06em}
+  .btn-call{display:none}
+  .nav-toggle{display:block}
+  .brand img{height:26px}
+  .nav-toggle.open span:nth-child(1){transform:translateY(3px) rotate(45deg)}
+  .nav-toggle.open span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+  .hero{height:clamp(300px,52vh,460px)}
+  .swatches{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .sw:last-child{grid-column:1/-1;max-width:50%}
+  }
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important}
+  .rise>span{transform:none!important}
+  .fade{opacity:1!important;transform:none!important}
+  .wm svg{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<script>
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  scrollTo(0,0);
+</script>
+
+<nav id="nav">
+  <a href="index.html" class="brand" aria-label="Five-Seventeen Studio">
+    <img src="fs-mono-brown.png" alt="Five-Seventeen Studio">
+  </a>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="work.html" aria-current="page">Work</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="studio.html">Studio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="book.html" class="btn-call">Book a Discovery Call <span class="ar">&rsaquo;</span></a>
+  <button class="nav-toggle" id="toggle" aria-label="Menu"><span></span><span></span></button>
+</nav>
+
+<!-- ========== 01 · VIDEO DE APERTURA ========== -->
+<div class="hero">
+  <div class="hero-frame">
+    <video src="media/opening.mp4" autoplay loop muted playsinline preload="auto"></video>
+  </div>
+</div>
+<p class="hero-cap">Drift &nbsp;&middot;&nbsp; Mexican-style lager &nbsp;&middot;&nbsp; 2026</p>
+
+<!-- ========== 02 · INTRO ========== -->
+<header class="lead">
+  <div class="wrap">
+    <p class="eyebrow"><span class="rise" id="h1"><span>Drift</span></span></p>
+
+    <div class="tags fade">
+      <span>[brand identity]</span>
+      <span>[packaging]</span>
+      <span>[visual storytelling]</span>
+    </div>
+
+    <p class="lede fade">Drift is a Mexican-style lager born between two shores, the light of California and the warmth of Mexico. The brief was a beer that tastes like an endless summer and a brand that never asks to be admired.</p>
+    <p class="lede fade">The identity runs on one line the founders already lived by: we do not make beer to impress anyone, we make beer to share. Everything follows from there. A script that reads like a signature, a palette drawn from sun and water, and a set of hand drawn marks that work on a can, a coaster, a pin, and a storefront without losing the same voice.</p>
+  </div>
+</header>
+
+<!-- ========== 03 · LOGO ========== -->
+<div class="board fade"><picture><source srcset="images/drift/logo.webp" type="image/webp"><img src="images/drift/logo.jpg" alt="Drift script wordmark with the line follow the current" loading="lazy"></picture></div>
+<p class="cap fade"><strong>The wordmark</strong>A script that reads like something signed by hand, not set by a studio. The descriptor sits quiet underneath and never competes.</p>
+
+<!-- ========== 04 · ILUSTRACIONES ========== -->
+<div class="board fade"><video data-src="media/illustration.mp4" loop muted playsinline preload="none"></video></div>
+<p class="cap fade"><strong>The marks</strong>Palms, waves, mugs and pennants, all drawn by hand on the same weight of line. They carry the brand where the wordmark does not fit.</p>
+
+<!-- ========== 05 · PALETA ========== -->
+<div class="swatches fade">
+  <div class="sw"><i style="background:var(--d-rust)"></i><b>Terracotta</b><span>#AF4D2A</span></div>
+  <div class="sw"><i style="background:var(--d-cream);box-shadow:inset 0 0 0 .5px rgba(10,10,10,.1)"></i><b>Cream</b><span>#F9F0E4</span></div>
+  <div class="sw"><i style="background:var(--d-yellow)"></i><b>Sun</b><span>#F9CA55</span></div>
+  <div class="sw"><i style="background:var(--d-teal)"></i><b>Water</b><span>#7BAAA7</span></div>
+  <div class="sw"><i style="background:var(--d-brown)"></i><b>Dusk</b><span>#301F13</span></div>
+</div>
+<p class="cap fade" style="padding-top:26px"><strong>The palette</strong>Five colors taken from a coast at two hours of the day. Terracotta and sun carry the label. Water and dusk hold the space around it.</p>
+
+<!-- ========== 06 · TIPOGRAFIA ========== -->
+<div class="board fade"><video data-src="media/type.mp4" loop muted playsinline preload="none"></video></div>
+<p class="cap fade"><strong>The type</strong>A condensed sans for the loud lines and a plain one for everything a drinker actually has to read.</p>
+
+<!-- ========== 07 · AFICHES ========== -->
+<div class="board fade"><picture><source srcset="images/drift/posters.webp" type="image/webp"><img src="images/drift/posters.jpg" alt="Two Drift posters, we make beer to share and take a moment" loading="lazy"></picture></div>
+<p class="cap fade"><strong>The voice in the room</strong>The same sentence works as a poster in the taproom and as a caption on a phone. It was written to be said out loud.</p>
+
+<!-- ========== 08 · PATRON ========== -->
+<div class="board fade"><picture><source srcset="images/drift/pattern.webp" type="image/webp"><img src="images/drift/pattern.jpg" alt="Drift hand drawn pattern of glasses, stars and pennants" loading="lazy"></picture></div>
+
+<!-- ========== 09 · LABELS ========== -->
+<div class="board fade"><video data-src="media/labels.mp4" loop muted playsinline preload="none"></video></div>
+<p class="cap fade"><strong>The can</strong>Three beers, one system. The frame and the script stay fixed. Only the color and the name of the beer change, so the shelf reads as one family from across the room.</p>
+
+<!-- ========== 10 · OBJETOS ========== -->
+<div class="board fade"><picture><source srcset="images/drift/photos.webp" type="image/webp"><img src="images/drift/photos.jpg" alt="Drift pins, coasters and cans in use" loading="lazy"></picture></div>
+<p class="cap fade"><strong>Off the shelf</strong>Pins, coasters, and a monogram small enough to survive a beer mat. The brand had to work at the size of the things people take home.</p>
+
+<!-- ========== 11 · WEB ========== -->
+<div class="board fade"><video data-src="media/web.mp4" loop muted playsinline preload="none"></video></div>
+<div class="board fade"><picture><source srcset="images/drift/web-home.webp" type="image/webp"><img src="images/drift/web-home.jpg" alt="Drift website homepage, we make beer to share" loading="lazy"></picture></div>
+<div class="board fade"><picture><source srcset="images/drift/web-beers.webp" type="image/webp"><img src="images/drift/web-beers.jpg" alt="Drift website product page showing three beers" loading="lazy"></picture></div>
+<p class="cap fade"><strong>The site</strong>The homepage says the one thing worth saying. The product page answers the only question that follows it: which one do I order.</p>
+
+<!-- ========== 12 · CIERRE VISUAL ========== -->
+<div class="board fade"><picture><source srcset="images/drift/closing.webp" type="image/webp"><img src="images/drift/closing.jpg" alt="Drift beer poured into a glass and the four pack carrier" loading="lazy"></picture></div>
+
+
+<!-- ========== CIERRE ========== -->
+<section class="close" id="contact">
+  <h2 class="fade">Time for the audit.</h2>
+  <p class="fade">One call. A clear list of what is working in your brand and what is not.</p>
+  <div class="fade"><a href="book.html" class="btn-ghost">Book a Discovery Call <span class="ar">&rsaquo;</span></a></div>
+
+  <div class="wm" id="wm" role="img" aria-label="Five-Seventeen">
+    <svg id="wm-svg" viewBox="0 0 791.71 92" preserveAspectRatio="xMidYMid meet">
+      <text id="wm-text" x="0" y="78.85" fill="#f5efe3"
+            font-family="'Bodoni Moda', Georgia, serif" font-size="90.12" font-weight="600"
+            style="font-variation-settings:'wght' 600,'opsz' 11">
+        <tspan x="0" y="0">F</tspan><tspan x="54.56" y="0">I</tspan><tspan x="91.78" y="0">V</tspan><tspan x="162.07" y="0">E</tspan><tspan x="219.16" y="0">-</tspan><tspan x="251.11" y="0" style="letter-spacing:-.03em">SE</tspan><tspan x="356.27" y="0">V</tspan><tspan x="426.56" y="0">E</tspan><tspan x="481.4" y="0" style="letter-spacing:-.01em">NT</tspan><tspan x="611.84" y="0" style="letter-spacing:-.03em">EE</tspan><tspan x="721.51" y="0">N</tspan>
+      </text>
+    </svg>
+  </div>
+</section>
+
+<footer class="colophon">
+  <span>&copy; 2026 Five-Seventeen Studio</span>
+  <span class="r">
+    <a href="mailto:fiveseventeenstudio@gmail.com">fiveseventeenstudio@gmail.com</a>
+    <a href="https://instagram.com/five_seventeenstudio" target="_blank" rel="noopener">Instagram</a>
+    <span>Chicago, Illinois</span>
+  </span>
+</footer>
+
+<script>
+addEventListener('DOMContentLoaded', () => {
+  scrollTo(0,0);
+  document.documentElement.classList.add('ready');
+  document.getElementById('h1').classList.add('vis');
+});
+
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => { nav.classList.toggle('stuck', scrollY > 40); }, {passive:true});
+
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+}, {threshold:.12, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+/* Los videos internos no cargan hasta que entran en pantalla.
+   Solo el de apertura arranca de una: asi la pagina abre ligera. */
+const vio = new IntersectionObserver(es => {
+  es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(()=>{}); }
+    else v.pause();
+  });
+}, {threshold:.2});
+document.querySelectorAll('.board video').forEach(v => vio.observe(v));
+
+new IntersectionObserver((es,o) => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); o.unobserve(e.target); } });
+}, {threshold:.25}).observe(document.getElementById('wm'));
+
+function fitWordmark(){
+  const t = document.getElementById('wm-text'), s = document.getElementById('wm-svg');
+  if (!t || !s) return;
+  try { const b = t.getBBox(); if (b.width > 0) s.setAttribute('viewBox', `${b.x} ${b.y} ${b.width} ${b.height}`); } catch(e){}
+}
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(fitWordmark);
+
+const tg = document.getElementById('toggle'), nl = document.getElementById('navlinks');
+tg.addEventListener('click', () => {
+  const open = nl.classList.toggle('open');
+  tg.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+nl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  nl.classList.remove('open'); tg.classList.remove('open'); document.body.style.overflow = '';
+}));
+</script>
+</body>
+</html>
